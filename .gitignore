@@ -1,0 +1,66 @@
+Output :
+
+<RelativeLayout xmlns:androclass="http://schemas.android.com/apk/res/android"  
+    xmlns:tools="http://schemas.android.com/tools"  
+    android:layout_width="match_parent"  
+    android:layout_height="match_parent"  
+    tools:context=".MainActivity" >  
+  
+    <TextView  
+        android:id="@+id/textView1"  
+        android:layout_width="wrap_content"  
+        android:layout_height="wrap_content"  
+        android:layout_alignParentLeft="true"  
+        android:layout_alignParentTop="true"  
+        android:layout_marginTop="15dp"  
+        android:text="@string/Search Products Here" />  
+  
+    <AutoCompleteTextView  
+        android:id="@+id/autoCompleteTextView1"  
+        android:layout_width="wrap_content"  
+        android:layout_height="wrap_content"  
+        android:layout_alignParentLeft="true"  
+        android:layout_below="@+id/textView1"  
+        android:layout_marginLeft="36dp"  
+        android:layout_marginTop="17dp"  
+        android:ems="10"  
+        android:text="">  
+  
+        <requestFocus />  
+    </AutoCompleteTextView>  
+      
+</RelativeLayout>  
+
+
+package com.dj;
+  
+import android.os.Bundle;  
+import android.app.Activity;  
+import android.graphics.Color;  
+import android.view.Menu;  
+import android.widget.ArrayAdapter;  
+import android.widget.AutoCompleteTextView;  
+  
+public class MainActivity extends Activity {  
+    String[] language ={"HP Laser","HP Inkjet,"HP Laptop"};  
+    @Override  
+    protected void onCreate(Bundle savedInstanceState) {  
+        super.onCreate(savedInstanceState);  
+        setContentView(R.layout.activity_main);  
+           ArrayAdapter<String> adapter = new ArrayAdapter<String>  
+            (this,android.R.layout.select_dialog_item,language);  
+         
+           AutoCompleteTextView actv= (AutoCompleteTextView)findViewById(R.id.autoCompleteTextView1);  
+           actv.setThreshold(1);
+           actv.setAdapter(adapter);  
+           actv.setTextColor(Color.RED);  
+                          
+    }  
+  
+    @Override  
+    public boolean onCreateOptionsMenu(Menu menu) {  
+         getMenuInflater().inflate(R.menu.activity_main, menu);  
+        return true;  
+    }  
+  
+}  
